@@ -14,7 +14,7 @@ source:
 
 build:
   merge_build_host: True  # [win]
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -48,6 +48,8 @@ requirements:
     - libgit2
 
 test:
+  requires:
+    - git  # [win]
   commands:
     - $R -e "library('gert')"           # [not win]
     - "\"%R%\" -e \"library('gert')\""  # [win]
