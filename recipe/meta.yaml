@@ -48,6 +48,8 @@ requirements:
     - libgit2
 
 test:
+  requires:
+    - git  # [win]
   commands:
     - $R -e "library('gert')"           # [not win]
     - "\"%R%\" -e \"library('gert')\""  # [win]
