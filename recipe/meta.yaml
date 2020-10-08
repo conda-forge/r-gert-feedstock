@@ -36,16 +36,19 @@ requirements:
   host:
     - r-base
     - r-askpass
-    - r-credentials >=1.0
+    - r-credentials >=1.2.1
     - r-openssl >=1.4.1
+    - r-rstudioapi >=0.11
+    - r-zip >=2.1.0
     - libgit2
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
     - r-askpass
-    - r-credentials >=1.0
+    - r-credentials >=1.2.1
     - r-openssl >=1.4.1
-    - libgit2
+    - r-rstudioapi >=0.11
+    - r-zip >=2.1.0
 
 test:
   requires:
