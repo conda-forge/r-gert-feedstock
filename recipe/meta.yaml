@@ -1,4 +1,4 @@
-{% set version = '0.3' %}
+{% set version = "1.0.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/gert_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/gert/gert_{{ version }}.tar.gz
-  sha256: 77d256f71af01bec65831cf05b848bf44fa9952e70eea855d7594dc11a935d31
+  sha256: 974f75b2f37ba61a73ef793fe5900b9c61049674a2e248a42b30a5733e279980
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -55,16 +55,13 @@ test:
     - "\"%R%\" -e \"library('gert')\""  # [win]
 
 about:
-  home: https://jeroen.cran.dev/gert (website), httsp://github.com/r-lib/gert (devel), https://libgit2.org
-    (upstream)
+  home: https://jeroen.cran.dev/gert (website), httsp://github.com/r-lib/gert (devel), https://libgit2.org (upstream)
   license: MIT
-  summary: Simple git client based on 'libgit2' with user-friendly authentication and support
-    for both SSH and HTTPS remotes on all platforms. User credentials are shared with
-    command line 'git' through the git-credential store and ssh keys stored on disk
-    or ssh-agent. On Linux, a somewhat recent  version of 'libgit2' is required.
+  summary: Simple git client based on 'libgit2' with user-friendly authentication and support for both SSH and HTTPS remotes on all platforms. User credentials are shared with command line 'git' through the git-credential store and ssh keys stored on disk or ssh-agent. On Linux, a somewhat recent  version of 'libgit2' is
+    required.
   license_family: MIT
   license_file:
-    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/MIT
     - LICENSE
 
 extra:
