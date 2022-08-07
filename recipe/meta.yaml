@@ -1,4 +1,4 @@
-{% set version = "1.5.0" %}
+{% set version = "1.7.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/gert_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/gert/gert_{{ version }}.tar.gz
-  sha256: 9fc330893b0cb43360905fd204e674813e1906449a95dc4037fe8802bd74a2ae
+  sha256: 1df88320b557291bb1465a34cffd94d83f369a1842689b1cc753ae9ba9adb8dd
 
 build:
   merge_build_host: true  # [win]
-  number: 2
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
