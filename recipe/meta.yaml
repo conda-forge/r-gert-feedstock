@@ -47,16 +47,18 @@ requirements:
     - r-rstudioapi >=0.11
     - r-sys
     - r-zip >=2.1.0
-    - libgit2
+    - libgit2                      # [not win]
+    - ucrt                         # [win]
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-askpass
     - r-credentials >=1.2.1
     - r-openssl >=1.4.1
     - r-rstudioapi >=0.11
     - r-sys
     - r-zip >=2.1.0
+    - {{ native }}gcc-libs         # [win]
+    - ucrt                         # [win]
 
 test:
   requires:
@@ -66,7 +68,8 @@ test:
     - "\"%R%\" -e \"library('gert')\""  # [win]
 
 about:
-  home: https://jeroen.cran.dev/gert (website), httsp://github.com/r-lib/gert (devel), https://libgit2.org (upstream)
+  home: https://jeroen.cran.dev/gert, https://libgit2.org
+  dev_url: https://github.com/r-lib/gert
   license: MIT
   summary: Simple git client based on 'libgit2' with user-friendly authentication and support for both SSH and HTTPS remotes on all platforms. User credentials are shared with command line 'git' through the git-credential store and ssh keys stored on disk or ssh-agent. On Linux, a somewhat recent  version of 'libgit2' is
     required.
