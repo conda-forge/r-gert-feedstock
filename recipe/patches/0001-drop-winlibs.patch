@@ -1,6 +1,6 @@
-From 18c76a34e5da11930c5f5eebba99fb90166dd57c Mon Sep 17 00:00:00 2001
+From 21ac64ea71c36c2261ddfb1e038d6629d5a8dada Mon Sep 17 00:00:00 2001
 From: Mervin Fansler <mmfansler@gmail.com>
-Date: Tue, 7 Feb 2023 16:09:26 -0500
+Date: Tue, 7 Feb 2023 18:14:41 -0500
 Subject: [PATCH] drop winlibs
 
 ---
@@ -10,7 +10,7 @@ Subject: [PATCH] drop winlibs
  delete mode 100644 tools/winlibs.R
 
 diff --git a/src/Makevars.win b/src/Makevars.win
-index d8df2ee..4621ddb 100644
+index d8df2ee..ff32160 100644
 --- a/src/Makevars.win
 +++ b/src/Makevars.win
 @@ -1,22 +1,17 @@
@@ -21,7 +21,7 @@ index d8df2ee..4621ddb 100644
 -PKG_CPPFLAGS = -I$(RWINLIB)/include \
 +PKG_CPPFLAGS = \
 +	-Iwin64 \
-+	-I$(LIBRARY_INC) \
++	-I$(LIBRARY_PREFIX_CYG)/include \
  	-DR_NO_REMAP -DSTRICT_R_HEADERS
  
  PKG_LIBS = \
