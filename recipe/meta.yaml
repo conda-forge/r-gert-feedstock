@@ -11,6 +11,8 @@ source:
     - {{ cran_mirror }}/src/contrib/gert_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/gert/gert_{{ version }}.tar.gz
   sha256: 42ca1b4bcafb1fdbbc7f54df0ee4476ecd19e9e7d563b53fe7064e0086ab665e
+  patches:
+    - patches/0001-drop-winlibs.patch
 
 build:
   merge_build_host: true  # [win]
@@ -46,8 +48,7 @@ requirements:
     - r-openssl >=2.0.3
     - r-rstudioapi >=0.11
     - r-zip >=2.1.0
-    - libgit2                      # [not win]
-    - ucrt                         # [win]
+    - libgit2
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
@@ -56,7 +57,6 @@ requirements:
     - r-openssl >=2.0.3
     - r-rstudioapi >=0.11
     - r-zip >=2.1.0
-    - ucrt                         # [win]
 
 test:
   requires:

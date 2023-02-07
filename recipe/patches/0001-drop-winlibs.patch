@@ -1,0 +1,62 @@
+From 18c76a34e5da11930c5f5eebba99fb90166dd57c Mon Sep 17 00:00:00 2001
+From: Mervin Fansler <mmfansler@gmail.com>
+Date: Tue, 7 Feb 2023 16:09:26 -0500
+Subject: [PATCH] drop winlibs
+
+---
+ src/Makevars.win | 19 +++++++------------
+ tools/winlibs.R  |  8 --------
+ 2 files changed, 7 insertions(+), 20 deletions(-)
+ delete mode 100644 tools/winlibs.R
+
+diff --git a/src/Makevars.win b/src/Makevars.win
+index d8df2ee..4621ddb 100644
+--- a/src/Makevars.win
++++ b/src/Makevars.win
+@@ -1,22 +1,17 @@
+-VERSION = 1.4.2-fixed
+-RWINLIB = ../windows/libgit2-$(VERSION)
+-TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
+-
+-PKG_CPPFLAGS = -I$(RWINLIB)/include \
++PKG_CPPFLAGS = \
++	-Iwin64 \
++	-I$(LIBRARY_INC) \
+ 	-DR_NO_REMAP -DSTRICT_R_HEADERS
+ 
+ PKG_LIBS = \
+-	-L$(RWINLIB)/$(TARGET) \
+-	-L$(RWINLIB)/lib$(R_ARCH) \
++	-Lwin64 \
++	-L$(LIBRARY_LIB) \
+ 	-lgit2 -lssh2 -lz -lssl -lcrypto -liconv \
+ 	-lwinhttp -lws2_32 -lcrypt32 -lole32 -lrpcrt4
+ 
+-all: clean winlibs
+-
+-winlibs:
+-	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R" $(VERSION)
++all: clean
+ 
+ clean:
+ 	rm -f $(SHLIB) $(OBJECTS)
+ 
+-.PHONY: all winlibs clean
++.PHONY: all clean
+diff --git a/tools/winlibs.R b/tools/winlibs.R
+deleted file mode 100644
+index 4a50530..0000000
+--- a/tools/winlibs.R
++++ /dev/null
+@@ -1,8 +0,0 @@
+-if(getRversion() < "3.3.0") setInternet2()
+-VERSION <- commandArgs(TRUE)
+-if(!file.exists(sprintf("../windows/libgit2-%s/include/git2.h", VERSION))){
+-  download.file(sprintf("https://github.com/rwinlib/libgit2/archive/v%s.zip", VERSION), "lib.zip", quiet = TRUE)
+-  dir.create("../windows", showWarnings = FALSE)
+-  unzip("lib.zip", exdir = "../windows")
+-  unlink("lib.zip")
+-}
+-- 
+2.39.0
+
