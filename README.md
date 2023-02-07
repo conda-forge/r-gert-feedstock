@@ -1,13 +1,15 @@
 About r-gert
 ============
 
-Home: https://jeroen.cran.dev/gert (website), httsp://github.com/r-lib/gert (devel), https://libgit2.org (upstream)
+Home: https://jeroen.cran.dev/gert, https://libgit2.org
 
 Package license: MIT
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-gert-feedstock/blob/main/LICENSE.txt)
 
 Summary: Simple git client based on 'libgit2' with user-friendly authentication and support for both SSH and HTTPS remotes on all platforms. User credentials are shared with command line 'git' through the git-credential store and ssh keys stored on disk or ssh-agent. On Linux, a somewhat recent  version of 'libgit2' is required.
+
+Development: https://github.com/r-lib/gert
 
 Current build status
 ====================
