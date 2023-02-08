@@ -70,7 +70,7 @@ test:
     - $R -e "testthat::test_file('tests/testthat.R', c('summary', 'fail'))"           # [not win]
     - "\"%R%\" -e \"library('gert')\""                                                # [win]
     - "\"%R%\" -e \"gert::libgit2_config()\""                                         # [win]
-    - "\"%R%\" -e \"testthat::test_file('tests/testthat.R', c('summary', 'fail'))\""  # [win]
+    - "\"%R%\" -e \"testthat::test_file('tests\\testthat.R', c('summary', 'fail'))\""  # [win]
 
 about:
   home: https://docs.ropensci.org/gert/
