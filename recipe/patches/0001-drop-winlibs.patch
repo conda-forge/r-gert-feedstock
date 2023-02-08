@@ -1,16 +1,16 @@
-From 01a91dac90a5e7b48be3e64b16f5003d6abbb499 Mon Sep 17 00:00:00 2001
+From 8e5bc7a0cde68cf6fb66b5c81c316ea62f3f24fb Mon Sep 17 00:00:00 2001
 From: Mervin Fansler <mmfansler@gmail.com>
-Date: Tue, 7 Feb 2023 18:48:06 -0500
+Date: Tue, 7 Feb 2023 21:22:32 -0500
 Subject: [PATCH] drop winlibs
 
 ---
- src/Makevars.win | 19 +++++++------------
+ src/Makevars.win | 23 +++++++++--------------
  tools/winlibs.R  |  8 --------
- 2 files changed, 7 insertions(+), 20 deletions(-)
+ 2 files changed, 9 insertions(+), 22 deletions(-)
  delete mode 100644 tools/winlibs.R
 
 diff --git a/src/Makevars.win b/src/Makevars.win
-index d8df2ee..d2da09a 100644
+index d8df2ee..219e214 100644
 --- a/src/Makevars.win
 +++ b/src/Makevars.win
 @@ -1,22 +1,17 @@
@@ -24,19 +24,21 @@ index d8df2ee..d2da09a 100644
 +	-I$(LIBRARY_PREFIX_CYG)/include \
  	-DR_NO_REMAP -DSTRICT_R_HEADERS
  
- PKG_LIBS = \
+-PKG_LIBS = \
 -	-L$(RWINLIB)/$(TARGET) \
 -	-L$(RWINLIB)/lib$(R_ARCH) \
+-	-lgit2 -lssh2 -lz -lssl -lcrypto -liconv \
++PKG_CPPFLAGS = \
 +	-Lwin64 \
 +	-L$(LIBRARY_PREFIX_CYG)/lib \
- 	-lgit2 -lssh2 -lz -lssl -lcrypto -liconv \
++	-lgit2 -lz -liconv \
  	-lwinhttp -lws2_32 -lcrypt32 -lole32 -lrpcrt4
  
 -all: clean winlibs
 -
 -winlibs:
 -	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R" $(VERSION)
-+all: clean
++all: clean 
  
  clean:
  	rm -f $(SHLIB) $(OBJECTS)
