@@ -66,10 +66,11 @@ test:
     - tests/testthat/
     - tests/testthat.R
   commands:
-    - $R -e "library('gert')"                                                                   # [not win]
-    - $R -e "testthat::test_file('tests/testthat.R', c('location', 'check', 'fail'))"           # [not win]
-    - "\"%R%\" -e \"library('gert')\""                                                          # [win]
-    - "\"%R%\" -e \"testthat::test_file('tests/testthat.R', c('location', 'check', 'fail'))\""  # [win]
+    - $R -e "library('gert')"                                                         # [not win]
+    - $R -e "testthat::test_file('tests/testthat.R', c('summary', 'fail'))"           # [not win]
+    - "\"%R%\" -e \"library('gert')\""                                                # [win]
+    - "\"%R%\" -e \"gert::libgit2_config()\""                                         # [win]
+    - "\"%R%\" -e \"testthat::test_file('tests/testthat.R', c('summary', 'fail'))\""  # [win]
 
 about:
   home: https://docs.ropensci.org/gert/
