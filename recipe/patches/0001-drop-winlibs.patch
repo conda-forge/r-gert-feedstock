@@ -1,6 +1,6 @@
-From 20e3c69528c346e7ea75b41fc9ea53c0f7fa2fd7 Mon Sep 17 00:00:00 2001
+From c6c529a91d405419d486e9e6247f40d23be09ec0 Mon Sep 17 00:00:00 2001
 From: Mervin Fansler <mmfansler@gmail.com>
-Date: Tue, 7 Feb 2023 22:04:43 -0500
+Date: Tue, 7 Feb 2023 22:23:15 -0500
 Subject: [PATCH] drop winlibs
 
 ---
@@ -10,7 +10,7 @@ Subject: [PATCH] drop winlibs
  delete mode 100644 tools/winlibs.R
 
 diff --git a/src/Makevars.win b/src/Makevars.win
-index d8df2ee..62fe040 100644
+index d8df2ee..7d54dc0 100644
 --- a/src/Makevars.win
 +++ b/src/Makevars.win
 @@ -1,22 +1,17 @@
@@ -28,8 +28,8 @@ index d8df2ee..62fe040 100644
 -	-L$(RWINLIB)/$(TARGET) \
 -	-L$(RWINLIB)/lib$(R_ARCH) \
 -	-lgit2 -lssh2 -lz -lssl -lcrypto -liconv \
-++	-Lwin64 \
-++	-L$(LIBRARY_PREFIX_CYG)/lib \
++	-Lwin64 \
++	-L$(LIBRARY_PREFIX_CYG)/lib \
 +	-lgit2 -lz -liconv \
  	-lwinhttp -lws2_32 -lcrypt32 -lole32 -lrpcrt4
  
