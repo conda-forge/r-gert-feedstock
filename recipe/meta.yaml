@@ -49,6 +49,8 @@ requirements:
     - r-rstudioapi >=0.11
     - r-zip >=2.1.0
     - libgit2
+    - libssh2                      # [win]
+    - openssl                      # [win]
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
@@ -57,7 +59,6 @@ requirements:
     - r-openssl >=2.0.3
     - r-rstudioapi >=0.11
     - r-zip >=2.1.0
-    - libgit2
 
 test:
   requires:
