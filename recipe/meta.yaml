@@ -65,7 +65,7 @@ test:
   commands:
     - $R -e "library('gert')"                                                       # [not win]
     - $R -e "testthat::test_package('gert')"                                        # [not win]
-    - "\"%R%\" -e \"d <- tempdir(); gert::git_init(d); gert::git_status(repo=d)\""  # [not win]
+    - $R -e "d <- tempdir(); gert::git_init(d); gert::git_status(repo=d)"           # [not win]
     - "\"%R%\" -e \"library('gert')\""                                              # [win]
     - "\"%R%\" -e \"d <- tempdir(); gert::git_init(d); gert::git_status(repo=d)\""  # [win]
 
