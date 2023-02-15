@@ -1,2 +1,5 @@
-"%R%" CMD INSTALL --build .
-IF %ERRORLEVEL% NEQ 0 exit 1
+set "LIBRARY_PREFIX_CYG=%LIBRARY_PREFIX:\=/%"
+set "LIBRARY_PREFIX_CYG=/%LIBRARY_PREFIX_CYG::=%"
+
+"%R%" CMD INSTALL --install-tests --build . %R_ARGS%
+IF %ERRORLEVEL% NEQ 0 exit /B 1
