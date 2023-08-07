@@ -3,6 +3,7 @@ About r-gert-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-gert-feedstock/blob/main/LICENSE.txt)
 
+
 About r-gert
 ------------
 
@@ -15,6 +16,7 @@ Summary: Simple git client based on 'libgit2' with user-friendly authentication 
 Development: https://github.com/r-lib/gert
 
 Documentation: https://docs.ropensci.org/gert/reference/
+
 About r-gert
 ------------
 
