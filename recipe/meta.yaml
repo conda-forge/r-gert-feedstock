@@ -1,4 +1,4 @@
-{% set version = "1.9.2" %}
+{% set version = "1.9.3" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,13 +10,13 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/gert_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/gert/gert_{{ version }}.tar.gz
-  sha256: 42ca1b4bcafb1fdbbc7f54df0ee4476ecd19e9e7d563b53fe7064e0086ab665e
+  sha256: 628c236fb9d6aacd42d3703515d54c3d4a9a61e9058ee8c33bec7de5c36e6827
   patches:
     - patches/0001-drop-winlibs.patch
 
 build:
   merge_build_host: true  # [win]
-  number: 2
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -67,7 +67,7 @@ test:
     - $R -e "testthat::test_package('gert')"                                        # [not win]
     - $R -e "d <- tempdir(); gert::git_init(d); gert::git_status(repo=d)"           # [not win]
     - "\"%R%\" -e \"library('gert')\""                                              # [win]
-    - "\"%R%\" -e \"d <- tempdir(); gert::git_init(d); gert::git_status(repo=d)\""  # [win]
+    - '"%R%" -e "d <- tempdir(); gert::git_init(d); gert::git_status(repo=d)"'      # [win]
 
 about:
   home: https://docs.ropensci.org/gert/
