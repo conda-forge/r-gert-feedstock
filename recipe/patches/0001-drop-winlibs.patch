@@ -25,7 +25,7 @@ index 90d71b7..e3c1f21 100644
 -	-L$(RWINLIB)/$(TARGET) \
 -	-L$(RWINLIB)/lib \
 -	-lgit2 -lssh2 -lssl -lcrypto -lz -liconv \
-+        -Iwin64 \
++        -Lwin64 \
 +	-L$(LIBRARY_PREFIX_CYG)/lib \
 +	-lgit2 -lz -liconv \
  	-lwinhttp -lws2_32 -lcrypt32 -lole32 -lrpcrt4 -lsecur32
