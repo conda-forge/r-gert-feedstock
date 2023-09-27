@@ -1,4 +1,4 @@
-{% set version = "1.9.3" %}
+{% set version = "2.0.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,13 +10,13 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/gert_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/gert/gert_{{ version }}.tar.gz
-  sha256: 628c236fb9d6aacd42d3703515d54c3d4a9a61e9058ee8c33bec7de5c36e6827
+  sha256: 7c147c3740e7ece8764e6197f311d84e6191fddead1d96fbbfb29816ef5d6391
   patches:
     - patches/0001-drop-winlibs.patch
 
 build:
   merge_build_host: true  # [win]
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
