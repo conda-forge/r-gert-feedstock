@@ -1,42 +1,39 @@
-From c6c529a91d405419d486e9e6247f40d23be09ec0 Mon Sep 17 00:00:00 2001
-From: Mervin Fansler <mmfansler@gmail.com>
-Date: Tue, 7 Feb 2023 22:23:15 -0500
-Subject: [PATCH] drop winlibs
+From f3fbe0b4d1cb28ed12de3509f0a615b5e8abf8c4 Mon Sep 17 00:00:00 2001
+From: Mervin Fansler <fanslerm@mskcc.org>
+Date: Wed, 27 Sep 2023 11:25:31 -0400
+Subject: [PATCH 1/2] drop winlibs
 
 ---
- src/Makevars.win | 21 ++++++++-------------
- tools/winlibs.R  |  8 --------
- 2 files changed, 8 insertions(+), 21 deletions(-)
- delete mode 100644 tools/winlibs.R
+ src/Makevars.win | 20 ++++++++------------
+ 1 file changed, 8 insertions(+), 12 deletions(-)
 
 diff --git a/src/Makevars.win b/src/Makevars.win
-index d8df2ee..7d54dc0 100644
+index 90d71b7..e3c1f21 100644
 --- a/src/Makevars.win
 +++ b/src/Makevars.win
-@@ -1,22 +1,17 @@
--VERSION = 1.4.2-fixed
--RWINLIB = ../windows/libgit2-$(VERSION)
+@@ -1,21 +1,17 @@
+-RWINLIB = ../windows/libgit2
 -TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
 -
 -PKG_CPPFLAGS = -I$(RWINLIB)/include \
 +PKG_CPPFLAGS = \
-+	-Iwin64 \
-+	-I$(LIBRARY_PREFIX_CYG)/include \
++        -Iwin64 \
++        -I$(LIBRARY_PREFIX_CYG)/include \
  	-DR_NO_REMAP -DSTRICT_R_HEADERS
  
  PKG_LIBS = \
 -	-L$(RWINLIB)/$(TARGET) \
--	-L$(RWINLIB)/lib$(R_ARCH) \
--	-lgit2 -lssh2 -lz -lssl -lcrypto -liconv \
-+	-Lwin64 \
+-	-L$(RWINLIB)/lib \
+-	-lgit2 -lssh2 -lssl -lcrypto -lz -liconv \
++        -Iwin64 \
 +	-L$(LIBRARY_PREFIX_CYG)/lib \
 +	-lgit2 -lz -liconv \
- 	-lwinhttp -lws2_32 -lcrypt32 -lole32 -lrpcrt4
+ 	-lwinhttp -lws2_32 -lcrypt32 -lole32 -lrpcrt4 -lsecur32
  
 -all: clean winlibs
 -
 -winlibs:
--	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R" $(VERSION)
+-	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R"
 +all: clean
  
  clean:
@@ -44,20 +41,38 @@ index d8df2ee..7d54dc0 100644
  
 -.PHONY: all winlibs clean
 +.PHONY: all clean
+
+From db42f7e394733b7256ab47e013d913e74848c857 Mon Sep 17 00:00:00 2001
+From: Mervin Fansler <fanslerm@mskcc.org>
+Date: Wed, 27 Sep 2023 11:26:16 -0400
+Subject: [PATCH 2/2] drop winlibs
+
+---
+ tools/winlibs.R | 18 ------------------
+ 1 file changed, 18 deletions(-)
+ delete mode 100644 tools/winlibs.R
+
 diff --git a/tools/winlibs.R b/tools/winlibs.R
 deleted file mode 100644
-index 4a50530..0000000
+index 16b38fa..0000000
 --- a/tools/winlibs.R
 +++ /dev/null
-@@ -1,8 +0,0 @@
--if(getRversion() < "3.3.0") setInternet2()
--VERSION <- commandArgs(TRUE)
--if(!file.exists(sprintf("../windows/libgit2-%s/include/git2.h", VERSION))){
--  download.file(sprintf("https://github.com/rwinlib/libgit2/archive/v%s.zip", VERSION), "lib.zip", quiet = TRUE)
+@@ -1,18 +0,0 @@
+-if(!file.exists("../windows/libgit2/include/git2.h")){
+-  unlink("../windows", recursive = TRUE)
+-  url <- if(grepl("aarch", R.version$platform)){
+-    "https://github.com/r-windows/bundles/releases/download/libgit2-1.7.1/libgit2-1.7.1-clang-aarch64.tar.xz"
+-  } else if(grepl("clang", Sys.getenv('R_COMPILED_BY'))){
+-    "https://github.com/r-windows/bundles/releases/download/libgit2-1.7.1/libgit2-1.7.1-clang-x86_64.tar.xz"
+-  } else if(getRversion() >= "4.2") {
+-    "https://github.com/r-windows/bundles/releases/download/libgit2-1.7.1/libgit2-1.7.1-ucrt-x86_64.tar.xz"
+-  } else {
+-    "https://github.com/rwinlib/libgit2/archive/v1.7.1.tar.gz"
+-  }
+-  download.file(url, basename(url), quiet = TRUE)
 -  dir.create("../windows", showWarnings = FALSE)
--  unzip("lib.zip", exdir = "../windows")
--  unlink("lib.zip")
+-  untar(basename(url), exdir = "../windows", tar = 'internal')
+-  unlink(basename(url))
+-  setwd("../windows")
+-  file.rename(list.files(), 'libgit2')
 -}
--- 
-2.39.0
-
