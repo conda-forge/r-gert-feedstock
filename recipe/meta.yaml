@@ -1,4 +1,4 @@
-{% set version = "2.1.3" %}
+{% set version = "2.1.4" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/gert_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/gert/gert_{{ version }}.tar.gz
-  sha256: ba6eac9ade776c3dcd60039ce4c87589bfb8253cc092d3379b756dd7d687c839
+  sha256: 2d982a3246c838fa98a15be94233a13091ef8f2bfe3728f57afebf623bf3776d
   patches:
     - patches/0001-drop-winlibs.patch
 
