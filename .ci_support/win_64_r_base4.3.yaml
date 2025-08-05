@@ -5,11 +5,11 @@ channel_targets:
 cran_mirror:
 - https://cran.r-project.org
 libgit2:
-- '1.8'
+- '1.9'
 m2w64_c_compiler:
 - gcc
 m2w64_c_compiler_version:
-- '13'
+- '14'
 m2w64_c_stdlib:
 - m2w64-sysroot
 m2w64_c_stdlib_version:
@@ -22,3 +22,5 @@ r_base:
 - '4.3'
 target_platform:
 - win-64
+zlib:
+- '1'
