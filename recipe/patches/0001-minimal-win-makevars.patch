@@ -1,0 +1,42 @@
+From ac4df6b9154cb98df809492212788314d5094921 Mon Sep 17 00:00:00 2001
+From: Mervin Fansler <mervin.fansler@bric.ku.dk>
+Date: Tue, 5 Aug 2025 11:48:16 +0200
+Subject: [PATCH] minimal win makevars
+
+---
+ src/Makevars.win | 24 ++++++------------------
+ 1 file changed, 6 insertions(+), 18 deletions(-)
+
+diff --git a/src/Makevars.win b/src/Makevars.win
+index 9c7729a..f0201ce 100644
+--- a/src/Makevars.win
++++ b/src/Makevars.win
+@@ -1,22 +1,10 @@
+-RWINLIB = ../.deps/libgit2
+-TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
+-
+-PKG_CPPFLAGS = -I$(RWINLIB)/include \
++PKG_CPPFLAGS = \
++	-Iwin64 \
++	-I$(LIBRARY_PREFIX_CYG)/include \
+ 	-DR_NO_REMAP -DSTRICT_R_HEADERS
+ 
+ PKG_LIBS = \
+-	-L$(RWINLIB)/$(TARGET) \
+-	-L$(RWINLIB)/lib \
+-	-lgit2 -lssh2 -lssl -lcrypto -lz -liconv \
++	-Lwin64 \
++	-L$(LIBRARY_PREFIX_CYG)/lib \
++	-lgit2 -lz -liconv \
+ 	-lwinhttp -lws2_32 -lcrypt32 -lole32 -lrpcrt4 -lsecur32
+-
+-all: $(SHLIB) cleanup
+-
+-# Needed for parallel make
+-$(OBJECTS): | $(RWINLIB)
+-
+-$(RWINLIB):
+-	@"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R"
+-
+-cleanup: $(SHLIB)
+-	@rm -Rf $(RWINLIB)
