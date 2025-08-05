@@ -10,14 +10,18 @@ source:
     - {{ cran_mirror }}/src/contrib/gert_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/gert/gert_{{ version }}.tar.gz
   sha256: 3dc376cb9ccb10cc8cf28581aefe41b91daf9dd71698b014004de1fe592ad918
-  patches:
-    - patches/0001-drop-winlibs.patch
+  #patches:
+  #  - patches/0001-drop-winlibs.patch
 
 build:
   number: 0
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
