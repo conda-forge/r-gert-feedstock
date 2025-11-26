@@ -20,7 +20,7 @@ index 6c86060..0f86c78 100644
 -endif
 -
 -PKG_CPPFLAGS = -I$(RWINLIB)/include \
-+PKG_CPPFLAGS =
++PKG_CPPFLAGS = \
 +    -Iwin64 \
 +    -I$(LIBRARY_PREFIX_CYG)/include \
  	-DR_NO_REMAP -DSTRICT_R_HEADERS
