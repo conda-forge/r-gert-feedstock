@@ -1,4 +1,4 @@
-{% set version = "2.2.0" %}
+{% set version = "2.3.0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/gert_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/gert/gert_{{ version }}.tar.gz
-  sha256: 94686a6e6e61fa68f903e7ee1bd451915bf8e868a5b1e82e7bddfd3b319a7b34
+  sha256: 4fc4fd6de98218429f6186923b64e77ddbe4a74a40d0abafe8fbf7aa2d398799
   patches:
     - patches/0001-minimal-win-makevars.patch
 
