@@ -1,4 +1,4 @@
-{% set version = "2.3.1" %}
+{% set version = "2.4.0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/gert_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/gert/gert_{{ version }}.tar.gz
-  sha256: 8b2a053a02826198ec29baf3e4b89bda313656d9d959def873bfa4be0c94d845
+  sha256: 6e64e20f42adebd8db473f194cbb3c95756d6561e95f20779978553ef00ecf7a
   patches:
     - patches/0001-minimal-win-makevars.patch
 
@@ -78,8 +78,8 @@ about:
   dev_url: https://github.com/r-lib/gert
   doc_url: https://docs.ropensci.org/gert/reference/
   license: MIT
-  summary: Simple git client based on 'libgit2' with user-friendly authentication and support for both SSH and HTTPS remotes on all platforms. User credentials are shared with command line 'git' through the git-credential store and ssh keys stored on disk or ssh-agent. On Linux, a somewhat recent  version of 'libgit2' is
-    required.
+  summary: Simple git client based on 'libgit2' with user-friendly authentication and support for both SSH and HTTPS remotes on all platforms. User credentials are shared with command line 'git' through the git-credential store and ssh keys stored on disk or ssh-agent. On Linux, a somewhat recent  version of 'libgit2' 
+    is required.
   license_family: MIT
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/MIT
